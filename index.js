@@ -5,4 +5,4 @@ app.get('/', (req, res) => {
     res.send('Moi!');
 });
 
-app.listen(3000, () => console.log('Up and running!'));
+app.listen(3000, '0.0.0.0', () => console.log('Up and running!'));
