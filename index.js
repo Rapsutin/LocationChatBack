@@ -19,7 +19,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
+    console.log(res);
     messages.push(req.body.text);
+    console.log(messages);
     res.json(
         {
             messages: getMessages()
