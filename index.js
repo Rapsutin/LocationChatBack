@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    messages.push(req.body);
+    messages.push(req.body.text);
     res.json(
         {
             messages: getMessages()
