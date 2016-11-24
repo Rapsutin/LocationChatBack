@@ -1,14 +1,28 @@
 const express = require('express');
 const app = express();
 
+var messages = [
+    'yy',
+    'kaaa'
+];
+
+function getMessages() {
+    return messages;
+}
+
 app.get('/', (req, res) => {
-    console.log(req)
     res.json(
         {
-            messages: [
-                'yy',
-                'kaaa'
-            ]
+            messages: getMessages()
+        }
+    );
+});
+
+app.post('/', (req, res) => {
+    messages.push(req.body);
+    res.json(
+        {
+            messages: getMessages()
         }
     );
 });
