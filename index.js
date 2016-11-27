@@ -26,6 +26,7 @@ app.get('/:lat/:lng', (req, res) => {
 });
 
 app.post('/:lat/:lng', (req, res) => {
+    console.log(req);
     message = req.body;
     message.timestamp = Date.now();
     messages.unshift(message);
