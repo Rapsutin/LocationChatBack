@@ -10,8 +10,8 @@ var messages = [
 function getMessages(ownLat, ownLng) {
     messages.filter(message => {
         return geolib.getDistanceSimple(
-            {latitude: ownLat, longitude: ownLng},
-            message.location
+            {latitude: parseFloat(ownLat), longitude: parseFloat(ownLng)},
+            {latitude: parseFloat(message.location.latitude), longitude: parseFloat(message.location.longitude)}
         ) < 4000;
     });
 }
