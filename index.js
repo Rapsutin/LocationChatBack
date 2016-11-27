@@ -1,19 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const geolib = require('geolib');
 const app = express();
 app.use(bodyParser.json());
 
 var messages = [
 ];
 
-function getMessages() {
-    return messages;
+function getMessages(ownLat, ownLng) {
+    messages.filter(message => {
+        return geolib.getDistanceSimple(
+            {latitude: ownLat, longitude: ownLng},
+            message.location
+        ) < 4000;
+    });
 }
 
-app.get('/', (req, res) => {
+app.get('/:lat/:lng', (req, res) => {
+    console.log(req.params);
     res.json(
         {
-            messages: getMessages()
+            messages: getMessages(req.params.lat, req.params.lng)
         }
     );
 });

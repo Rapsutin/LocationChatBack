@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "geolib": "^2.0.22",
+    "turf": "^3.0.14"
   },
   "devDependencies": {},
   "scripts": {
