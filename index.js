@@ -8,7 +8,7 @@ var messages = [
 ];
 
 function getMessages(ownLat, ownLng) {
-    messages.filter(message => {
+    return messages.filter(message => {
         return geolib.getDistanceSimple(
             {latitude: parseFloat(ownLat), longitude: parseFloat(ownLng)},
             {latitude: parseFloat(message.location.latitude), longitude: parseFloat(message.location.longitude)}
@@ -25,13 +25,13 @@ app.get('/:lat/:lng', (req, res) => {
     );
 });
 
-app.post('/', (req, res) => {
+app.post('/:lat/:lng', (req, res) => {
     message = req.body;
     message.timestamp = Date.now();
     messages.unshift(message);
     res.json(
         {
-            messages: getMessages()
+            messages: getMessages(req.params.lat, req.params.lng)
         }
     );
 });
