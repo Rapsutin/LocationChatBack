@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     message = req.body;
     message.timestamp = Date.now();
-    messages.push(message);
+    messages.unshift(message);
     res.json(
         {
             messages: getMessages()
