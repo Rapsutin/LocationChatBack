@@ -29,7 +29,7 @@ app.post('/message/:room', (req, res) => {
 app.get('/rooms', (req, res) => {
     roomsAvailable = [];
     for(i = 0; i < rooms.length; i++) {
-        roomsAvailable.push({id: i, name: rooms[i].name});
+        roomsAvailable.push({id: i, name: rooms[i].roomName});
     }
     res.json(roomsAvailable);
 });
