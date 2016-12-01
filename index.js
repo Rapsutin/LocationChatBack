@@ -10,14 +10,14 @@ app.get('/:room', (req, res) => {
     console.log(req.params);
     res.json(
         {
-            messages: rooms[req.params.room].getMessages()
+            messages: rooms[parseInt(req.params.room)].getMessages()
         }
     );
 });
 
 app.post('/:room', (req, res) => {
     console.log(req);
-    room = rooms[req.params.room];
+    room = rooms[parseInt(req.params.room)];
     room.newMessage(req.body.text);
     res.json(
         {
