@@ -1,38 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const geolib = require('geolib');
 const app = express();
 app.use(bodyParser.json());
 
-var messages = [
-];
+var rooms = [Room("Testing", "60.203", "24.975")];
 
-function getMessages(ownLat, ownLng) {
-    return messages.filter(message => {
-        return geolib.getDistanceSimple(
-            {latitude: parseFloat(ownLat), longitude: parseFloat(ownLng)},
-            {latitude: parseFloat(message.location.latitude), longitude: parseFloat(message.location.longitude)}
-        ) < 4000;
-    });
-}
-
-app.get('/:lat/:lng', (req, res) => {
+app.get('/:room', (req, res) => {
     console.log(req.params);
     res.json(
         {
-            messages: getMessages(req.params.lat, req.params.lng)
+            messages: rooms[req.params.room].getMessages()
         }
     );
 });
 
-app.post('/:lat/:lng', (req, res) => {
+app.post('/:room', (req, res) => {
     console.log(req);
-    message = req.body;
-    message.timestamp = Date.now();
-    messages.unshift(message);
+    room = rooms[req.params.room];
+    room.newMessage(req.body.text);
     res.json(
         {
-            messages: getMessages(req.params.lat, req.params.lng)
+            messages: room.getMessages()
         }
     );
 });
