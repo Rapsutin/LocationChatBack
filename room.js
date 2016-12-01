@@ -1,5 +1,5 @@
 const geolib = require('geolib');
-export default class Room {
+class Room {
 
     constructor(roomName, lat, lng) {
         this.roomName = roomName;
@@ -25,3 +25,5 @@ export default class Room {
     }
 
 }
+
+module.exports = Room;

@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const Room = require('./room');
 const app = express();
 app.use(bodyParser.json());
 
-var rooms = [Room("Testing", "60.203", "24.975")];
+var rooms = [new Room("Testing", "60.203", "24.975")];
 
 app.get('/:room', (req, res) => {
     console.log(req.params);
