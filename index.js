@@ -6,7 +6,7 @@ app.use(bodyParser.json());
 
 var rooms = [new Room("Testing", "60.203", "24.975")];
 
-app.get('/:room', (req, res) => {
+app.get('/message/:room', (req, res) => {
     console.log(req.params);
     res.json(
         {
@@ -15,7 +15,7 @@ app.get('/:room', (req, res) => {
     );
 });
 
-app.post('/:room', (req, res) => {
+app.post('/message/:room', (req, res) => {
     console.log(req);
     room = rooms[parseInt(req.params.room)];
     room.newMessage(req.body.text);
