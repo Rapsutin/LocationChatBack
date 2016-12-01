@@ -26,4 +26,12 @@ app.post('/:room', (req, res) => {
     );
 });
 
+app.get('/rooms', () => {
+    roomsAvailable = [];
+    for(i = 0; i < rooms.length; i++) {
+        roomsAvailable.push({id: i, name: rooms[i].name});
+    }
+    res.json(roomsAvailable);
+});
+
 app.listen(3000, () => console.log('Up and running!'));
