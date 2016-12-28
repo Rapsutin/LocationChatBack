@@ -6,12 +6,15 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "fs": "0.0.1-security",
     "geolib": "^2.0.22",
+    "pg": "^6.1.2",
     "turf": "^3.0.14"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC"
