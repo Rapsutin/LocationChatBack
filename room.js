@@ -4,11 +4,11 @@ const util = require('util');
 
 
 function postGISLocation(latitude, longitude) {
-    return util.format('SRID=4326;POINT(%d %d)', latitude, longitude);
+    return util.format('SRID=4326;POINT(%d %d)', longitude, latitude);
 }
 
 function getRooms(latitude, longitude, maxDistance) {
-    queryString = `SELECT * FROM room WHERE ST_DWithin(location, ST_GeographyFromText($1), $2)`;
+    queryString = `SELECT *, ST_Distance(location, ST_GeographyFromText($1)) AS Distance FROM room WHERE ST_DWithin(location, ST_GeographyFromText($1), $2)`;
     currentLocation = postGISLocation(latitude, longitude);
 
     return pool.query(queryString, [currentLocation, maxDistance])
